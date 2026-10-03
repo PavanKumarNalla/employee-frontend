@@ -3,6 +3,8 @@ import { Employee } from '../employee';
 import { EmployeeService } from '../employee.service';
 import { error } from 'console';
 import { Router} from '@angular/router'
+import { FormGroup, Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-create-employee',
@@ -34,7 +36,39 @@ export class CreateEmployeeComponent implements OnInit {
 
    onSubmit(){
 
-    console.log(this.employee);
-    this.saveEmployee();
+    // console.log(this.employee);
+    console.log(this.regForm);
+    // if (this.regForm.controls["uname"].errors["required"])
+    // if(this.employee.firstName.length >= 8) {
+    //   console.log("test")
+    //   this.saveEmployee();
+
+    // } else {
+    //   alert("Enter valid  FirstName");
+    // }
+    if((this.employee.firstName.length >= 8) && (this.employee.lastName.length >= 4) && (this.employee.emailId.length >= 8)) {
+      console.log("test1")
+      this.saveEmployee();
+
+    } else {
+      alert("Enter valid Details");
+    }
+    // if(this.employee.emailId.length >= 8) {
+    //   console.log("test2")
+    //   this.saveEmployee();
+
+    // } else {
+    //   alert("Enter valid EmailId");
+    // }
+
+    // this.saveEmployee();
    }
+
+  regForm= new FormGroup({
+
+     firstName: new FormControl ("John",[Validators.required,Validators.minLength(8)]),
+     lastName : new FormControl ("Enter LastName",[Validators.required,Validators.minLength(8)]),
+     mailId: new FormControl ("xyz@gmail.com",[Validators.required,Validators.minLength(8)])
+  })
+
 }
