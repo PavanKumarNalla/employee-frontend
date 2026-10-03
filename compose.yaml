@@ -1,0 +1,19 @@
+services:
+
+  backend:
+    image: employee-backend:v1
+    container_name: employee-backend-compose
+    ports:
+      - "8080:8090"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:3306/employee_management_system
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: "123456"
+
+  frontend:
+    image: employee-frontend:v1
+    container_name: employee-frontend-compose
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
