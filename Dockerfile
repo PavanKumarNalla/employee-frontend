@@ -3,24 +3,22 @@ FROM node:20-alpine AS build
 
 WORKDIR /app
 
-# Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+RUN npm ci
 
-# Copy source code
 COPY . .
 
-# Build Angular application
 RUN npm run build
 
 
 # Stage 2: Serve Angular using Nginx
 FROM nginx:alpine
 
-# Copy Angular browser build
 COPY --from=build /app/dist/angular-frontend/browser /usr/share/nginx/html
+
+# Use our custom Nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 

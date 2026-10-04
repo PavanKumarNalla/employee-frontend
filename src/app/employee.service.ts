@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class EmployeeService {
 
   //private baseURL = "http://localhost:8080/api/v1/employees";
-   private baseURL = "http://localhost:8080/api/v1/employees";
+   private baseURL = "/api/v1/employees";
   // private baseURL = "http://crudoperations-env.eba-g3yrkdg3.ap-south-1.elasticbeanstalk.com/";
   //private baseURL = "http://angularapplication-env.eba-pva8dmn3.ap-south-1.elasticbeanstalk.com/api/v1/employees";
 
